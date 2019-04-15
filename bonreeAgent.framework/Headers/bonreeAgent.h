@@ -26,10 +26,10 @@
 
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:5.3.1)*/
+/**启动bonreeAgent(ver:6.0.0)*/
 + (void)startWithAppID:(NSString*)appid;
 
-/**启动bonreeAgent，并指明是否使用保障开关(如果sdk造成了崩溃，则sdk在下次启动将只开启崩溃收集功能)，默认开启*/
+/**启动bonreeAgent，并指明是否使用保障开关(如果sdk造成了崩溃，则sdk在下次启动将只上报崩溃数据，不开启功能)，默认开启*/
 + (void)startWithAppID:(NSString *)appid GuardOn:(BOOL)guardOn;
 
 /**启动bonreeAgent,并指明是否使用位置服务*/
@@ -37,12 +37,6 @@
 
 /**启动bonreeAgent,同时指定是否开启webview功能,默认开启（YES表示开启，NO表示关闭）*/
 + (void)startWithAppID:(NSString *)appId webViewOn:(BOOL)webViewOn;
-
-/**设置是否通过弹框方式显示日志，默认关闭*/
-+ (void)enableDebugModel:(BOOL)enable;
-
-/**设置是否异步启动*/
-+ (void)enableAsyncStart:(BOOL)enable;
 
 /**设置是否捕获崩溃日志,默认打开*/
 + (void)enableCrashReporting:(BOOL)enable;
