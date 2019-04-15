@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "bonreeAgent"
-  s.version      = "5.3.1"
+  s.version      = "6.0.0"
   s.summary      = "iOS SDK"
 
   # This description is used to generate tags and improve search results.
@@ -122,7 +122,7 @@ Pod::Spec.new do |s|
   s.frameworks = "UIKit", "Foundation"
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
-  s.libraries = "z", "resolv"
+  s.libraries = "z", "resolv", "c++"
   s.requires_arc = true
   s.ios.vendored_frameworks = 'bonreeAgent.framework'
 
