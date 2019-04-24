@@ -29,6 +29,7 @@
   * CoreTelephony.framework
   * Security.framework
   * SystemConfiguration.framework
+  * webKit.framework
   * libz.1.2.8.tbd（**必须引入**）
   * libresolv.tbd（**必须引入**）
   * libc++.tbd（**必须引入**）
@@ -77,9 +78,6 @@
 ```objective-c
 /**启动bonreeAgent*/
 + (void)startWithAppID:(NSString*)appid;
-
-/**启动bonreeAgent，并指明是否使用保障开关(如果sdk造成了崩溃，则sdk在下次启动将只上报崩溃数据，不开启功能)，默认开启*/
-+ (void)startWithAppID:(NSString *)appid GuardOn:(BOOL)guardOn;
 
 /**启动bonreeAgent,并指明是否使用位置服务*/
 + (void)startWithAppID:(NSString*)appId location:(BOOL)locationAllowed;
