@@ -22,11 +22,9 @@
 #define BRS_LOG_JS              (0x1 << 3)
 #define BRS_LOG_TO_FILE         (0x1 << 4)
 
-@class AFSecurityPolicy;
-
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.0.0)*/
+/**启动bonreeAgent(ver:6.0.1)*/
 + (void)startWithAppID:(NSString*)appid;
 
 /**启动bonreeAgent，并指明是否使用保障开关(如果sdk造成了崩溃，则sdk在下次启动将只上报崩溃数据，不开启功能)，默认开启*/
@@ -51,7 +49,7 @@
 + (void)enableBonreeNetwork:(BOOL)enable;
 
 /**设置是否开启数据融合,YES表示开启,NO表示关闭,默认关闭(该接口为定制接口,调用之前请与公司的技术人员咨询确认)*/
-+(void)enableMerge:(BOOL)enable;
++ (void)enableMerge:(BOOL)enable;
 
 /**设置是否开启崩溃轨迹，YES表示开启，NO表示关闭,公有云版本默认开启*/
 + (void)enableCrashTrace:(BOOL)enable;

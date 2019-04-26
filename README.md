@@ -1,7 +1,5 @@
 # BonreeAgent
 
-
-
 ## 安装指南
 
 ### Cocoapods方式
@@ -29,7 +27,7 @@
   * CoreTelephony.framework
   * Security.framework
   * SystemConfiguration.framework
-  * webKit.framework
+  * webKit.framework（如果项目支持iOS8之前版本需要添加）
   * libz.1.2.8.tbd（**必须引入**）
   * libresolv.tbd（**必须引入**）
   * libc++.tbd（**必须引入**）
@@ -196,6 +194,7 @@
 ### 其它
 
 * config地址接口调用须在sdk初始化接口startWithAppID之前调用，否则私有云地址设置将无法生效;
-
 * 私有云需要调用setConfigAddress,设置config地址,具体地址由技术支持提供 
 * 如果项目中存在友盟，启动位置需要在友盟启动之后
+* 仅支持iOS8.0及以上版本，网络模块仅支持iOS10及以上版本
+
