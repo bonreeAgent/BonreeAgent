@@ -24,7 +24,7 @@
 
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.0.2)*/
+/**启动bonreeAgent(ver:6.0.3)*/
 + (void)startWithAppID:(NSString*)appid;
 
 /**启动bonreeAgent，并指明是否使用保障开关(如果sdk造成了崩溃，则sdk在下次启动将只上报崩溃数据，不开启功能)，默认开启*/

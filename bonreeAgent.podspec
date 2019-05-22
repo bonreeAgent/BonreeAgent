@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "bonreeAgent"
-  s.version      = "6.0.2"
+  s.version      = "6.0.3"
   s.summary      = "iOS SDK"
 
   # This description is used to generate tags and improve search results.
