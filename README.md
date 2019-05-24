@@ -49,7 +49,7 @@
 * 在application:didFinishLaunchingWithOptions中设置config地址与AppId，如图所示:
 
 ```objective-c
-[BRSAgent setConﬁgAddress:@"https://sdkupload.bonree.com/conﬁg/"];
+[BRSAgent setConfigAddress:@"https://sdkupload.bonree.com/config"];
 [BRSAgent startWithAppID:@"40766f87-13a8-48d3-9c96-1ce7c3cde50f"];
 ```
 
