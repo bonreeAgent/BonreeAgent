@@ -24,44 +24,8 @@
 
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.0.4)*/
+/**启动bonreeAgent(ver:6.1.0)*/
 + (void)startWithAppID:(NSString*)appid;
-
-/**启动bonreeAgent，并指明是否使用保障开关(如果sdk造成了崩溃，则sdk在下次启动将只上报崩溃数据，不开启功能)，默认开启*/
-+ (void)startWithAppID:(NSString *)appid GuardOn:(BOOL)guardOn;
-
-/**启动bonreeAgent,并指明是否使用位置服务*/
-+ (void)startWithAppID:(NSString*)appId location:(BOOL)locationAllowed;
-
-/**启动bonreeAgent,同时指定是否开启webview功能,默认开启（YES表示开启，NO表示关闭）*/
-+ (void)startWithAppID:(NSString *)appId webViewOn:(BOOL)webViewOn;
-
-/**设置是否捕获崩溃日志,默认打开*/
-+ (void)enableCrashReporting:(BOOL)enable;
-
-/**设置是否获取位置信息,默认关闭*/
-+ (void)enableLocation:(BOOL)enable;
-
-/**不通过后台来配置启动概率,100%启动SDK*/
-+ (void)enableAllLaunch:(BOOL)enable;
-
-/**设置是否获取网络性能数据,默认打开*/
-+ (void)enableBonreeNetwork:(BOOL)enable;
-
-/**设置是否开启数据融合,YES表示开启,NO表示关闭,默认关闭(该接口为定制接口,调用之前请与公司的技术人员咨询确认)*/
-+ (void)enableMerge:(BOOL)enable;
-
-/**设置是否开启崩溃轨迹，YES表示开启，NO表示关闭,公有云版本默认开启*/
-+ (void)enableCrashTrace:(BOOL)enable;
-
-/**设置是否开启交互分析，YES表示开启，NO表示关闭,公有云版本默认开启*/
-+ (void)enableInteract:(BOOL)enable;
-
-/**设置是否开启卡顿监测，YES表示开启，NO表示关闭,公有云版本默认开启*/
-+ (void)enableStuckMonitorOn:(BOOL)enable;
-
-/**设置是否开启webview监测，YES表示开启，NO表示关闭,公有云版本默认开启*/
-+ (void)enableWebviewOn:(BOOL)enable;
 
 /**设置config地址,默认公有云不用设置*/
 + (void)setConfigAddress:(NSString*)configAddress;
@@ -69,43 +33,8 @@
 /**设置app版本(请在bonreeAgent启动之前设置)*/
 + (void)setAppVersion:(NSString *)appVersion;
 
-+ (void)stopSDK;
-
-/**即时upload接口，客户调用该接口，将sdk目前保存的数据及当前视图的信息直接上传，返回值为YES表示上传成功，NO表示上传失败。(同步上传，建议客户启用新的线程调用)*/
-+ (BOOL)upload;
-
-/**自定义崩溃收集接口,exceptionName为崩溃类型，如数组越界等；causeby为崩溃原因，即造成崩溃的方法；errordump为崩溃堆栈*/
-+ (void)setUserExceptionWithName:(NSString *)exceptionName CauseBy:(NSString *)causedBy Errordump:(NSString *)errordump;
-
-/**设置自定义信息*/
-+ (void)setDefinedLog:(NSString *)memberId Info:(NSString *)definedInfo;
-
-/**增加自定义崩溃轨迹*/
-+ (void)addCustomCrashTrace:(NSString *)title action:(NSString *)name;
-
-/**更新cookie、网关及端口信息(该接口为定制接口,调用之前请与公司的技术人员咨询确认)*/
-+ (void)setCookie:(id)cookie gateway:(NSString *)gateway port:(NSString *)port;
-
-#pragma mark -
-#pragma mark - 行为数据
-
 /**设置下载渠道名称*/
 + (void)setChannelName:(NSString*)channelName;
-
-/**自定义事件*/
-+ (void)trackEvent:(NSString*)eventID name:(NSString*)eventName;
-
-/**自定义事件(客户可通过dictionary<key,value>参数增加对事件的描述，key为NSString类型，value为NSString或NSNumber类型)*/
-+ (void)trackEvent:(NSString*)eventID name:(NSString*)eventName parameters:(NSDictionary*)dictionary;
-
-/*
- 标记页面开始和结束,这两个接口需要成对调用.
- 在viewWillAppear或者viewDidAppear调用trackPageBegin方法
- 在viewWillDisappear或者viewDidDisappear调用trackPageEnd方法
- */
-+ (void)trackPageBegin:(NSString *)pageId pageName:(NSString *)pageName;
-+ (void)trackPageEnd:(NSString *)pageId pageName:(NSString*)pageName;
-
 
 /**设置会员id*/
 + (void)setMemberId:(NSString *)memberId;
@@ -131,26 +60,84 @@
 
 /**获取设备的deviceId*/
 + (NSString *)deviceId;
+
 /**获取SDK的版本号*/
-+ (NSString *)getBonreeSDKVersion;
++ (NSString *)SDKVersion;
+
+/// 设置是否保存upload数据
++ (void)setIsKeepUploadData:(BOOL)isKeepUploadData;
+
+/**即时upload接口，客户调用该接口，将sdk目前保存的数据及当前视图的信息直接上传，返回值为YES表示上传成功，NO表示上传失败。(同步上传，建议客户启用新的线程调用)*/
++ (void)upload:(void(^)(NSError *error))result;
+
++ (void)stopSDK;
+
+
+#pragma mark - 自定义
+
+/**
+ 自定义异常收集
+ 
+ @param exceptionType 异常类型
+ @param causedBy 异常原因
+ @param errorDump 异常堆栈
+ */
++ (void)setCustomExceptionWithExceptionType:(NSString *)exceptionType
+                                    causeBy:(NSString *)causedBy
+                                  errorDump:(NSString *)errorDump;
+
+/**
+ 自定义日志
+ 
+ @param memberId 会员ID
+ @param info 日志信息
+ */
++ (void)setCustomLogWithMemberId:(NSString *)memberId
+                            info:(NSString *)info;
+
+/**
+ 自定义事件
+ 
+ @param eventId 事件ID
+ @param eventName 事件名
+ @param eventInfo 事件信息，对事件的描述
+ */
++ (void)setCustomEventWithEventId:(NSString *)eventId 
+                        eventName:(NSString *)eventName
+                        eventInfo:(NSDictionary *)eventInfo;
+
+
+/**
+ 自定义视图之标记页面开始（和页面结束方法成对调用）
+ 
+ @param pageId 页面ID
+ @param pageName 页面名
+ 
+ 一般调用位置：viewWillAppear或者viewDidAppear
+ */
++ (void)setCustomViewOfBeginWithPageId:(NSString *)pageId
+                              pageName:(NSString *)pageName;
+
+/**
+ 自定义视图之标记页面结束（和页面开始方法成对调用）
+ 
+ @param pageId 页面ID
+ @param pageName 页面名
+ 
+ 一般调用位置：viewWillDisappear或者viewDidDisappear
+ */
++ (void)setCustomViewOfEndWithPageId:(NSString *)pageId
+                            pageName:(NSString *)pageName;
 
 /**
  用户测速接口
-
- @param customerId 解析类型 ,客户唯一标识
- @param jsonData 需要解析的内容 ,json格式的数据
- @param isOnce 是否只上传一次，true上传后清空jsonData，false上传完成后不清空jsonData，到下次上传的时候继续上传该jsonData
- */
-+ (void)setThirdData:(NSString *)customerId jsonData:(NSString *)jsonData isOnce:(BOOL)isOnce;
-@end
-
-/*
- Example 1:
- 最简单的,默认关闭位置服务,默认打开捕获崩溃信息,启动概率为100%,同步启动
- [BRSAgent startWithAppID:@"xxxx"];
  
- Example 2:
- 打开捕获崩溃信息
- [BRSAgent enableCrashReporting:YES];
- [BRSAgent startWithAppID:@"xxxx"];
-*/
+ @param parsingType 解析类型 ,客户标识
+ @param content 需要解析的内容（一般为json格式的数据字典或者数组转换的结果）
+ @param isOnce 是否只上传一次，true上传后清空content，false上传完成后不清空content，到下次上传的时候继续上传该content
+ */
++ (void)setCustomSpeedWithParsingType:(NSString *)parsingType
+                              content:(NSString *)content
+                               isOnce:(BOOL)isOnce;
+
+@end
