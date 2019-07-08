@@ -194,6 +194,7 @@
 
 * config地址接口调用须在sdk初始化接口startWithAppID之前调用，否则私有云地址设置将无法生效;
 * 私有云需要调用setConfigAddress,设置config地址,具体地址由技术支持提供 
+* 私有云使用6.1.0版本SDK，平台最低为5.9.2版本
 * SDK仅支持iOS8.0及以上版本
 * 网络模块仅支持iOS10及以上版本
 * WKWebView仅支持iOS11及以上版本
