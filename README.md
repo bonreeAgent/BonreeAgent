@@ -187,7 +187,7 @@
 
 * bonreeAgent启动为什么要在didFinishLaunchingWithOptions方法的最前面？
 
-  答：网络请求大部分项目中使用的是单例，发起之后再启动SDK，会导致使用该单例发起的网络请求无法采集！
+  答：最前面启动能保证数据的继承链完整的被hook， 数据采集更加全面 ！
 
 * bonreeAgent崩溃与友盟崩溃可以同时使用吗？
 
@@ -201,8 +201,6 @@
 * bonreeAgent崩溃与bugly可以同时使用吗？
 
     答：可以。但启动需要在bugly启动之前，否则可能会引发bugly崩溃卡死问题。
-
-    
 
 * 项目做了自定义崩溃处理，使用bonreeAgent崩溃功能有启动顺序要求吗？
 

@@ -24,7 +24,7 @@
 
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.2.1)*/
+/**启动bonreeAgent(ver:6.3.0)*/
 + (void)startWithAppID:(NSString*)appid;
 
 /**设置config地址,默认公有云不用设置*/
@@ -42,7 +42,7 @@
 + (void)setUserInfo:(NSDictionary *)kv;
 
 /*
- 打开日志标志,默认只打开BRS_LOG_PUBLIC日志.
+ 打开日志标志,默认不打开日志.
  此接口调试时调用,不建议在生产环境调用.
  例:打开BRS_LOG_PBDATA日志
  [BRSAgent setLogFlag:@(BRS_LOG_PUBLIC|BRS_LOG_PBDATA)];
@@ -63,14 +63,6 @@
 
 /**获取SDK的版本号*/
 + (NSString *)SDKVersion;
-
-
-/**
- 设置是否保存upload数据
-
- @param isKeepUploadData YES 保存数据（本地模式），NO代表内存模式
- */
-+ (void)setIsKeepUploadData:(BOOL)isKeepUploadData;
 
 /**即时upload接口，客户调用该接口，将sdk目前保存的数据及当前视图的信息直接上传，返回值为YES表示上传成功，NO表示上传失败。(同步上传，建议客户启用新的线程调用)*/
 + (void)upload:(void(^)(NSError *error))result;
