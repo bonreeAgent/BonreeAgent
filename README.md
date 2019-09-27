@@ -198,9 +198,9 @@
   答：极光开启崩溃日志功能，会导致bonreeAgent OC崩溃捕获异常，建议不要同时使用。极光崩溃日志功能API如下
   ![image](./img/JPushCrash.png)
 
-* bonreeAgent崩溃与buggly可以同时使用吗？
+* bonreeAgent崩溃与bugly可以同时使用吗？
 
-    答：可以。但启动需要在buggly启动之前，否则可能会引发buggly崩溃卡死问题。
+    答：可以。但启动需要在bugly启动之前，否则可能会引发bugly崩溃卡死问题。
 
     
 
@@ -210,7 +210,7 @@
 
 * bonreeAgent启动为什么要放在AFNetworking初始化之前？
 
-    答：AFNetworking初始化先初始化，可能会导致AF的网络请求无法被采集。
+    答：AFNetworking优先初始化，可能会导致AF的网络请求无法被采集。
 
 ---
 
