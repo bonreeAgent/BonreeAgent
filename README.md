@@ -174,6 +174,7 @@
 
 ### 注意点
 
+* bonreeAgent启动要在didFinishLaunchingWithOptions方法的最前面
 * Config地址接口调用须在SDK初始化接口startWithAppID之前调用，否则私有云地址设置将无法生效;
 * 私有云需要调用setConfigAddress,设置config地址,具体地址由技术支持提供 
 * 私有云使用6.1.0版本SDK，平台最低为5.9.2版本
@@ -184,13 +185,32 @@
 
 ### F&Q
 
-* SDK启动代码请写在didFinishLaunchingWithOptions方法的**最前面**，若和下面的注意点有冲突，以下面的提示为准。
-* 与友盟崩溃同时使用，启动位置需要在友盟之后，才可以正常抓取崩溃。
-* 极光开启崩溃日志功能，会导致OC崩溃捕获异常，建议SDK崩溃采集和极光崩溃日志功能不要同时使用。
-    ![image](./img/JPushCrash.png)
-* 与buggly同时使用，启动需要在buggly启动之前，否则可能会引发buggly崩溃卡死问题
-* 如果使用了NSSetUncaughtExceptionHandler方法，建议在该方法调用之后启动
-* SDK启动要放在AFNetworking初始化之前
+* bonreeAgent启动为什么要在didFinishLaunchingWithOptions方法的最前面？
+
+  答：网络请求大部分项目中使用的是单例，发起之后再启动SDK，会导致使用该单例发起的网络请求无法采集！
+
+* bonreeAgent崩溃与友盟崩溃可以同时使用吗？
+
+  答：可以。但因为友盟没有做崩溃事件的传递，所以启动位置需要在友盟之后，才可以正常抓取崩溃。
+
+* bonreeAgent崩溃与极光崩溃日志功能可以同时使用吗？
+
+  答：极光开启崩溃日志功能，会导致bonreeAgent OC崩溃捕获异常，建议不要同时使用。极光崩溃日志功能API如下
+  ![image](./img/JPushCrash.png)
+
+* bonreeAgent崩溃与buggly可以同时使用吗？
+
+    答：可以。但启动需要在buggly启动之前，否则可能会引发buggly崩溃卡死问题。
+
+    
+
+* 项目做了自定义崩溃处理，使用bonreeAgent崩溃功能有启动顺序要求吗？
+
+    答：建议在该方法调用之后启动。
+
+* bonreeAgent启动为什么要放在AFNetworking初始化之前？
+
+    答：AFNetworking初始化先初始化，可能会导致AF的网络请求无法被采集。
 
 ---
 
