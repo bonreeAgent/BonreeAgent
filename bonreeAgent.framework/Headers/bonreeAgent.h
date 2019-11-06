@@ -15,16 +15,18 @@
 
 #import <Foundation/Foundation.h>
 
-//日志标志
-#define BRS_LOG_PUBLIC          (0x1)
-#define BRS_LOG_BRN             (0x1 << 1)
-#define BRS_LOG_PBDATA          (0x1 << 2)
-#define BRS_LOG_JS              (0x1 << 3)
-#define BRS_LOG_TO_FILE         (0x1 << 4)
+#define BRS_LOG_OFF      0x0         /// 关闭日志输出
+#define BRS_LOG_PUBLIC   0x1         /// 显示主流程信息, default
+#define BRS_LOG_PBDATA   0x1 << 1    /// 展示上报数据、响应数据
+#define BRS_LOG_INFO     0x1 << 2    /// 提示信息
+#define BRS_LOG_WARN     0x1 << 3    /// 警告信息
+#define BRS_LOG_ERROR    0x1 << 4    /// 错误信息
+#define BRS_LOG_TO_FILE  0x1 << 23
+
 
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.3.0)*/
+/**启动bonreeAgent(ver:6.3.1)*/
 + (void)startWithAppID:(NSString*)appid;
 
 /**设置config地址,默认公有云不用设置*/
@@ -42,21 +44,20 @@
 + (void)setUserInfo:(NSDictionary *)kv;
 
 /*
- 打开日志标志,默认不打开日志.
- 此接口调试时调用,不建议在生产环境调用.
- 例:打开BRS_LOG_PBDATA日志
- [BRSAgent setLogFlag:@(BRS_LOG_PUBLIC|BRS_LOG_PBDATA)];
+打开日志标志,（默认只打开BRS_LOG_PUBLIC日志，此接口调试时调用,不建议在生产环境调用.）
+
+例:打开BRS_LOG_PBDATA日志
+[BRSAgent setLogFlag:@(BRS_LOG_PUBLIC|BRS_LOG_PBDATA)];
+
+若需要通过iTunes导出log文件,应在程序的Info.plist文件中添加Application supports iTunes file sharing键，并将键值设置为YES.
  
- 如果将日志写到文件中,
- 需要在应用程序的Info.plist文件中添加Application supports iTunes file sharing键，
- 并将键值设置为YES.
- 例:打开BRS_LOG_PBDATA日志且写到文件中
- [BRSAgent setLogFlag:@(BRS_LOG_PUBLIC|BRS_LOG_PBDATA|BRS_LOG_TO_FILE)];
- 
- 关闭日志开关:
- [BRSAgent setLogFlag:@0];
- */
-+ (void)setLogFlag:(NSNumber*)flag;
+例:打开BRS_LOG_PBDATA日志且写到文件中
+[BRSAgent setLogFlag:@(BRS_LOG_PUBLIC|BRS_LOG_PBDATA|BRS_LOG_TO_FILE)];
+
+关闭日志开关:
+[BRSAgent setLogFlag:@(BRS_LOG_OFF)];
+*/
++ (void)setLogFlag:(NSNumber *)flag;
 
 /**获取设备的deviceId*/
 + (NSString *)deviceId;
