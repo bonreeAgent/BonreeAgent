@@ -217,7 +217,13 @@
 ```objective-c
 /**启动bonreeAgent*/
 + (void)startWithAppID:(NSString*)appid;
-
+/**
+ 离线模式启动bonreeAgent
+ 
+ @param appid appid
+ @param enable 是否使用离线模式，YES 使用，NO 不使用
+ */
++ (void)startWithAppID:(NSString*)appid configOfflineMode:(BOOL)enable;
 /**设置config地址,默认公有云不用设置*/
 + (void)setConfigAddress:(NSString*)configAddress;
 

@@ -26,7 +26,7 @@
 
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.3.2)*/
+/**启动bonreeAgent(ver:6.3.4)*/
 + (void)startWithAppID:(NSString*)appid;
 
 /**设置config地址,默认公有云不用设置*/
