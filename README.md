@@ -261,10 +261,7 @@
 /**获取SDK的版本号*/
 + (NSString *)SDKVersion;
 
-/// 设置是否保存upload数据
-+ (void)setIsKeepUploadData:(BOOL)isKeepUploadData;
-
-/**即时upload接口，客户调用该接口，将sdk目前保存的数据及当前视图的信息直接上传，返回值为YES表示上传成功，NO表示上传失败。(同步上传，建议客户启用新的线程调用)*/
+/**即时upload接口，客户调用该接口，将sdk目前保存的数据及当前视图的信息直接上传。(同步上传，建议客户启用新的线程调用)*/
 + (void)upload:(void(^)(NSError *error))result;
 
 + (void)stopSDK;
@@ -283,14 +280,6 @@
                                     causeBy:(NSString *)causedBy
                                   errorDump:(NSString *)errorDump;
 
-/**
- 自定义日志
- 
- @param memberId 会员ID
- @param info 日志信息
- */
-+ (void)setCustomLogWithMemberId:(NSString *)memberId
-                            info:(NSString *)info;
 
 /**
  自定义事件
