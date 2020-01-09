@@ -26,7 +26,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.3.6)*/
+/**启动bonreeAgent(ver:6.3.7)*/
 + (void)startWithAppID:(NSString *)appid;
 
 /**设置config地址,默认公有云不用设置*/
@@ -88,15 +88,6 @@ q @param exceptionType 异常类型
 + (void)setCustomExceptionWithExceptionType:(NSString *)exceptionType
                                     causeBy:(NSString * _Nullable)causedBy
                                   errorDump:(NSString * _Nullable)errorDump;
-
-/**
- 自定义日志
- 
- @param memberId 会员ID
- @param info 日志信息
- */
-+ (void)setCustomLogWithMemberId:(NSString *)memberId
-                            info:(NSString *)info;
 
 /**
  自定义事件
