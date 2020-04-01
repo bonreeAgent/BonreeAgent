@@ -259,20 +259,24 @@
 
 + (void)stopSDK;
 
+/**
+  配置博睿的异常接口监听
+
+ @param callback 错误回调
+ */
++ (void)setExceptionCallback:(void(^ _Nullable)(NSString * _Nullable errorMessege))callback;
 
 #pragma mark - 自定义
 
 /**
  自定义异常收集
- 
- @param exceptionType 异常类型
+q @param exceptionType 异常类型
  @param causedBy 异常原因
  @param errorDump 异常堆栈
  */
 + (void)setCustomExceptionWithExceptionType:(NSString *)exceptionType
-                                    causeBy:(NSString *)causedBy
-                                  errorDump:(NSString *)errorDump;
-
+                                    causeBy:(NSString * _Nullable)causedBy
+                                  errorDump:(NSString * _Nullable)errorDump;
 
 /**
  自定义事件
@@ -282,8 +286,8 @@
  @param eventInfo 事件信息，对事件的描述
  */
 + (void)setCustomEventWithEventId:(NSString *)eventId 
-                        eventName:(NSString *)eventName
-                        eventInfo:(NSDictionary *)eventInfo;
+                        eventName:(NSString * _Nullable)eventName
+                        eventInfo:(NSDictionary * _Nullable)eventInfo;
 
 
 /**
@@ -295,7 +299,7 @@
  一般调用位置：viewWillAppear或者viewDidAppear
  */
 + (void)setCustomViewOfBeginWithPageId:(NSString *)pageId
-                              pageName:(NSString *)pageName;
+                              pageName:(NSString * _Nullable)pageName;
 
 /**
  自定义视图之标记页面结束（和页面开始方法成对调用）
@@ -306,7 +310,7 @@
  一般调用位置：viewWillDisappear或者viewDidDisappear
  */
 + (void)setCustomViewOfEndWithPageId:(NSString *)pageId
-                            pageName:(NSString *)pageName;
+                            pageName:(NSString * _Nullable)pageName;
 
 /**
  用户测速接口
@@ -316,8 +320,16 @@
  @param isOnce 是否只上传一次，true上传后清空content，false上传完成后不清空content，到下次上传的时候继续上传该content
  */
 + (void)setCustomSpeedWithParsingType:(NSString *)parsingType
-                              content:(NSString *)content
+                              content:(NSString * _Nullable)content
                                isOnce:(BOOL)isOnce;
+
+
+/// 记录应用启动时间 (在main函数中调用) 返回值为记录的启动时间戳
++ (uint64_t)recordLaunchTime;
+
+/// 客户自定义请求头业务
+/// @param headerArr 要获取的请求头中键名数组
++ (void)setCustomBusinessHeaders:(NSArray *)headerArr;
 ```
 
 ---
