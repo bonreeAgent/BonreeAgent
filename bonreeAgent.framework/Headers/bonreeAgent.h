@@ -26,7 +26,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.3.7)*/
+/**启动bonreeAgent(ver:6.4.0)*/
 + (void)startWithAppID:(NSString *)appid;
 
 /**设置config地址,默认公有云不用设置*/
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**获取SDK的版本号*/
 + (NSString *)SDKVersion;
 
-/**即时upload接口，客户调用该接口，将sdk目前保存的数据及当前视图的信息直接上传，返回值为YES表示上传成功，NO表示上传失败。(同步上传，建议客户启用新的线程调用)*/
+/**即时upload接口，客户调用该接口，将sdk目前保存的数据及当前视图的信息直接上传。(同步上传，建议客户启用新的线程调用)*/
 + (void)upload:(void(^ _Nullable)(NSError * _Nullable error))result;
 
 + (void)stopSDK;
@@ -133,6 +133,14 @@ q @param exceptionType 异常类型
 + (void)setCustomSpeedWithParsingType:(NSString *)parsingType
                               content:(NSString * _Nullable)content
                                isOnce:(BOOL)isOnce;
+
+
+/// 记录应用启动时间 (在main函数中调用) 返回值为记录的启动时间戳
++ (uint64_t)recordLaunchTime;
+
+/// 客户自定义请求头业务
+/// @param headerArr 要获取的请求头中键名数组
++ (void)setCustomBusinessHeaders:(NSArray *)headerArr;
 
 @end
 NS_ASSUME_NONNULL_END
