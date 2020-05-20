@@ -251,6 +251,13 @@
 /**获取设备的deviceId*/
 + (NSString *)deviceId;
 
+/**
+ 配置自定义的设备deviceId
+ 
+ 注意:该方法必须在 - startWithAppID: 方法前调用,并且只能设置一次.
+ */
++ (void)setDeviceID:(NSString *)deviceID;
+
 /**获取SDK的版本号*/
 + (NSString *)SDKVersion;
 
