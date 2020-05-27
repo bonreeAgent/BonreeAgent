@@ -337,6 +337,10 @@ q @param exceptionType 异常类型
 /// 客户自定义请求头业务
 /// @param headerArr 要获取的请求头中键名数组
 + (void)setCustomBusinessHeaders:(NSArray *)headerArr;
+
+/// 是否使用mPaaS框架
+/// @param used 是否使用mPaaS
++ (void)useMpaas:(BOOL)used;
 ```
 
 ---
