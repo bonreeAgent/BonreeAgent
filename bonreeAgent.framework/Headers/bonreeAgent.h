@@ -26,7 +26,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.4.2)*/
+/**启动bonreeAgent(ver:6.5.0)*/
 + (void)startWithAppID:(NSString *)appid;
 
 /**设置config地址,默认公有云不用设置*/
@@ -61,6 +61,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**获取设备的deviceId*/
 + (NSString *)deviceId;
+
+/**
+ 配置自定义的设备deviceId
+ 
+ 注意:该方法必须在 - startWithAppID: 方法前调用,并且只能设置一次.
+ */
++ (void)setDeviceID:(NSString *)deviceID;
 
 /**获取SDK的版本号*/
 + (NSString *)SDKVersion;
@@ -141,6 +148,10 @@ q @param exceptionType 异常类型
 /// 客户自定义请求头业务
 /// @param headerArr 要获取的请求头中键名数组
 + (void)setCustomBusinessHeaders:(NSArray *)headerArr;
+
+/// 是否使用mPaaS框架
+/// @param used 是否使用mPaaS
++ (void)useMpaas:(BOOL)used;
 
 @end
 NS_ASSUME_NONNULL_END
