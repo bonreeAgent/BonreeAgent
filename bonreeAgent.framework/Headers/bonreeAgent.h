@@ -26,7 +26,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.5.1)*/
+/**启动bonreeAgent(ver:6.6.1)*/
 + (void)startWithAppID:(NSString *)appid;
 
 /**设置config地址,默认公有云不用设置*/
@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  自定义异常收集
-q @param exceptionType 异常类型
+ @param exceptionType 异常类型
  @param causedBy 异常原因
  @param errorDump 异常堆栈
  */
@@ -143,7 +143,7 @@ q @param exceptionType 异常类型
 
 
 /// 记录应用启动时间 (在main函数中调用) 返回值为记录的启动时间戳
-+ (uint64_t)recordLaunchTime;
++ (uint64_t)recordLaunchTime __attribute__((deprecated("启动时间自动获取，该接口停用。")));
 
 /// 客户自定义请求头业务
 /// @param headerArr 要获取的请求头中键名数组
