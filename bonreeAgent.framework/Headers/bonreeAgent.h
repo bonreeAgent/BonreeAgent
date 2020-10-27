@@ -26,7 +26,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.6.1)*/
+/**启动bonreeAgent(ver:6.6.5)*/
 + (void)startWithAppID:(NSString *)appid;
 
 /**设置config地址,默认公有云不用设置*/
