@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "bonreeAgent"
-  s.version      = "6.6.9"
+  s.version      = "6.6.15"
   s.summary      = "iOS SDK"
 
   # This description is used to generate tags and improve search results.
@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "bonree" => "fengyj@bonree.com" }
+  s.author             = { "bonree" => "shixj@bonree.com" }
   # Or just: s.author    = "bonree"
   # s.authors            = { "bonree" => "fengyj@bonree.com" }
   # s.social_media_url   = "http://twitter.com/bonree"
