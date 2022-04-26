@@ -26,7 +26,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface BRSAgent : NSObject
 
-/**启动bonreeAgent(ver:6.6.15)*/
+/**启动bonreeAgent(ver:6.6.17)*/
 + (void)startWithAppID:(NSString *)appid;
 
 /**设置config地址,默认公有云不用设置*/
@@ -76,6 +76,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)upload:(void(^ _Nullable)(NSError * _Nullable error))result;
 
 + (void)stopSDK;
+
+/**禁止网络模块采集cname*/
++ (void)disableCnameCollection;
+
 
 /**
   配置博睿的异常接口监听
